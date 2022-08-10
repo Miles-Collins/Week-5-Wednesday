@@ -3,7 +3,7 @@ import BaseController from '../utils/BaseController';
 
 export class StarsController extends BaseController { 
   constructor(){
-    super('api/galaxy')
+    super('api/stars')
     this.router
     .get('', this.getStars)
     .post('', this.createStar)

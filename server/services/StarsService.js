@@ -4,6 +4,11 @@ import { dbContext } from "../db/DbContext"
 
 class StarsService {
 
+  async getStarsByStarId(galaxyId) {
+    let stars = await dbContext.Star.find({galaxyId})
+    return stars
+  }
+
   async getStars() {
     let stars = await dbContext.Star.find()
     return stars
@@ -18,4 +23,4 @@ class StarsService {
 
 
 
-export const starsService = new StarsService
+export const starsService = new StarsService()

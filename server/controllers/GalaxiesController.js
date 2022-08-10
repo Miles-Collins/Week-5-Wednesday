@@ -1,4 +1,5 @@
 import { galaxyService } from "../services/GalaxyService";
+import { starsService } from "../services/StarsService";
 import BaseController from '../utils/BaseController';
 
 
@@ -7,9 +8,11 @@ export class GalaxiesController extends BaseController {
     super('api/galaxy')
     this.router
     .get('', this.getGalaxies)
+    .get('/:galaxyId/stars', this.getGalaxyStarByStarId)
     .post('', this.createGalaxy)
 
   }
+ 
 
   async getGalaxies(req, res, next) {
     try {
@@ -28,6 +31,16 @@ export class GalaxiesController extends BaseController {
       next(error)
     }
   }
+
+  async getGalaxyStarByStarId(req, res, next) {
+    try {
+      let stars = await starsService.getStarsByStarId(req.params.galaxyId)
+      res.send(stars)
+    } catch (error) {
+      next(error)
+    }
+  }
+
 
 
 }
