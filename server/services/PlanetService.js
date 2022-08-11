@@ -1,6 +1,10 @@
 import { dbContext } from "../db/DbContext"
 
-class PlanetsService { 
+class PlanetsService {
+  async getStarsByStarId(starsId) {
+    let star = await dbContext.Planet.find({starsId})
+    return star
+  } 
   async getPlanets() {
     let planets = await dbContext.Planet.find()
     return planets

@@ -1,3 +1,4 @@
+import { planetsService } from "../services/PlanetService";
 import { starsService } from "../services/StarsService";
 import BaseController from '../utils/BaseController';
 
@@ -7,6 +8,7 @@ export class StarsController extends BaseController {
     this.router
     .get('', this.getStars)
     .post('', this.createStar)
+    .get('/:starId/planets', this.getStarsPlanetsById)
 
   }
 
@@ -27,4 +29,13 @@ export class StarsController extends BaseController {
       next(error)
     }
   }
+
+  async getStarsPlanetsById(req, res, next) {
+    try {
+      let planets = await planetsService.getStarsByStarId(req.params.starsId)
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
