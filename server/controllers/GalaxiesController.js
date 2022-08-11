@@ -41,6 +41,14 @@ export class GalaxiesController extends BaseController {
     }
   }
 
-
+  async assignStar(req, res, next) {
+    try {
+      console.log('the logged in user is', req.userInfo)
+      let star = await starsService.assignStar(req.params.courseId, req.userInfo.id)
+      res.send(star)
+    } catch (error) {
+      next(error)
+    }
+  }
 
 }
